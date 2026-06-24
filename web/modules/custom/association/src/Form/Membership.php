@@ -852,6 +852,7 @@ final class Membership extends FormBase {
           'amap_jusdepomme' => 'Jus de pomme',
           'amap_cidre' => 'Cidre',
           'amap_herbier' => 'Herbier',
+          'amap_noix' => 'Noix',
         ],
         '#states' => [
           'visible' => [
@@ -866,7 +867,7 @@ final class Membership extends FormBase {
         ],
         '#title' => $this->t('- Si je souscris à au moins un panier (quel que soit le contrat),'),
         '#options' => [
-          'dist' => 'je m’engage à participer aux distributions',
+          'dist' => 'je m’engage à participer aux distributions au moins deux fois par an',
           'work' => 'je m’engage à assister aux ateliers pédagogiques sur les lieux de production en fonction des besoins',
         ],
         '#states' => [

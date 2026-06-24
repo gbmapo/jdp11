@@ -1773,16 +1773,16 @@ display:
             max: ''
             value: '2'
           group: 1
-          exposed: false
+          exposed: true
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: status_op
+            label: Publié
             description: ''
-            use_operator: false
-            operator: ''
+            use_operator: true
+            operator: status_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: ''
+            identifier: status
             required: false
             remember: false
             multiple: false
@@ -1816,17 +1816,17 @@ display:
           operator: '='
           value: '1'
           group: 1
-          exposed: false
+          exposed: true
           expose:
             operator_id: ''
-            label: ''
+            label: 'Active ?'
             description: ''
             use_operator: false
-            operator: ''
+            operator: isactive_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: ''
-            required: false
+            identifier: isactive
+            required: true
             remember: false
             multiple: false
             remember_roles:

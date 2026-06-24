@@ -21,6 +21,8 @@ function association_member_status()
     3 => 'Adhésion renouvelée',
     4 => 'Adhérent actif',
     5 => 'Adhérent internet',
+    6 => 'Adhérent futur',
+    7 => 'Pseudo adhérent',
   ];
   return $values;
 }

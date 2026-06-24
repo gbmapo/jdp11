@@ -5,7 +5,7 @@ dependencies: {  }
 id: daily_schedule
 label: 'Daily  Schedule'
 enabled: true
-keep: 20
+keep: 14
 period: 43200
 cron: null
 source_id: default_db

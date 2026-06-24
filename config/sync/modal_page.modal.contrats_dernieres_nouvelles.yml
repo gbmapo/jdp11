@@ -5,7 +5,7 @@ dependencies: {  }
 id: contrats_dernieres_nouvelles
 label: 'Contrats - Dernières nouvelles'
 body:
-  value: "<div class=\"text-align-justify\"><ul><li>Contrat Kiwis [02/10/2025]<br>Le nombre maximal de paniers possibles étant atteint, la souscription est fermée.</li><li>Contrat Pommes-Poires et Contrat Poires [08/11/2025]<br>Bonne nouvelle : le nombre de paniers Pommes-Poires souscrits suite à la relance est plus important qu'attendu.<br>Mauvaise nouvelle : afin d'être certain d'honorer ces contrats, le contrat Poires (uniquement) est annulé.&nbsp;</li></ul></div>"
+  value: '<div class="text-align-justify"><ul><li data-list-item-id="eb03628ae1e04a61c76dd14a3ef11443f">le 01/06/2026,<ul><li data-list-item-id="e31b129f8d5816e96a6db6e334c93c0f2">Contrat Fruits d’Été<br>Les Vergers des Coudrayes déclarent la souscription fermée.</li><li data-list-item-id="ee7badbad7b331ecaebd3d713c1c81f76">Contrat Cerises<br>Les Vergers des Préaux déclarent la souscription fermée.</li></ul></li></ul></div>'
   format: full_html
 pages: "/amap/contracts1\r\n/amap/contracts2"
 auto_open: true
@@ -42,7 +42,7 @@ custom_cookie_expiration_time: 10000
 enable_show_on_height: false
 height_offset: ''
 height_offset_touch: '0'
-published: false
+published: true
 insert_horizontal_line_header: true
 insert_horizontal_line_footer: false
 enable_modal_header: true

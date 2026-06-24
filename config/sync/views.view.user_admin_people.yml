@@ -134,7 +134,7 @@ display:
           entity_type: user
           entity_field: status
           plugin_id: field
-          label: Publié
+          label: Statut
           exclude: false
           alter:
             alter_text: false
@@ -597,7 +597,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Publié
+            label: Statut
             description: ''
             identifier: status
             optional: true
