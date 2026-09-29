@@ -5,7 +5,7 @@ dependencies: {  }
 id: contrats_dernieres_nouvelles
 label: 'Contrats - Dernières nouvelles'
 body:
-  value: '<div class="text-align-justify"><ul><li data-list-item-id="eb03628ae1e04a61c76dd14a3ef11443f">le 01/06/2026,<ul><li data-list-item-id="e31b129f8d5816e96a6db6e334c93c0f2">Contrat Fruits d’Été<br>Les Vergers des Coudrayes déclarent la souscription fermée.</li><li data-list-item-id="ee7badbad7b331ecaebd3d713c1c81f76">Contrat Cerises<br>Les Vergers des Préaux déclarent la souscription fermée.</li></ul></li></ul></div>'
+  value: '<div class="text-align-justify"><ul><li data-list-item-id="eb03628ae1e04a61c76dd14a3ef11443f">le 28/07/2026,<ul><li data-list-item-id="edd8654fc3f9fe126656240682ecf8783">Contrat Prunes 2026🍈<br><em>Les Vergers des Coudrayes</em> nous proposent un contrat Prunes, à trouver <a href="https://lejardindepoissy.org/amap/showcontracts">ici</a>.<br><u>Nouveauté</u> : il est possible de régler son contrat par virement. Le RIB du compte à utiliser et les règles sont dans le contrat (il n''est pas utile de l''imprimer avec le contrat 😇)<br><u>Attention</u> : la date limite de souscription est le 08/08 ; les délais étant courts, vous <span style="color:hsl(0,75%,60%);">devez </span>adresser à Éric vos demandes par voie électronique (courriel, texto, message privé sur WhatsApp)</li></ul></li></ul></div>'
   format: full_html
 pages: "/amap/contracts1\r\n/amap/contracts2"
 auto_open: true
@@ -42,7 +42,7 @@ custom_cookie_expiration_time: 10000
 enable_show_on_height: false
 height_offset: ''
 height_offset_touch: '0'
-published: true
+published: false
 insert_horizontal_line_header: true
 insert_horizontal_line_footer: false
 enable_modal_header: true
