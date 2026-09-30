@@ -24,10 +24,10 @@ settings:
       value: '294'
       label: '2. AMAP Agneau'
     -
-      value: '304'
+      value: '313'
       label: '2. AMAP Bœuf'
     -
-      value: '288'
+      value: '318'
       label: '2. AMAP Champignons'
     -
       value: '305'
@@ -48,7 +48,7 @@ settings:
       value: '284'
       label: '2. AMAP Lentilles'
     -
-      value: '287'
+      value: '319'
       label: '2. AMAP Miel'
     -
       value: '290'
@@ -57,19 +57,19 @@ settings:
       value: '310'
       label: '2. AMAP Pommes de terre'
     -
-      value: '286'
+      value: '322'
       label: '2. AMAP Pommes-Poires'
     -
-      value: '296'
+      value: '316'
       label: '2. AMAP Porc'
     -
       value: '308'
       label: '2. AMAP Produits laitiers (Brebis)'
     -
-      value: '307'
+      value: '317'
       label: '2. AMAP Produits laitiers (Vache)'
     -
-      value: '281'
+      value: '315'
       label: '2. AMAP Prunes'
     -
       value: '301'
@@ -79,6 +79,9 @@ settings:
       label: '2. AMAP Volaille'
     -
       value: '283'
+      label: '2. AMAP Œufs'
+    -
+      value: '321'
       label: '2. AMAP Œufs'
   allowed_values_function: shared_allowed_values_function
 module: options

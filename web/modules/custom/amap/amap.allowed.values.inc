@@ -7,7 +7,7 @@ function amap_distribution_products()
     2 => 'Brioche',
     3 => 'Champignons',
     4 => 'Farine',
-    5 => 'Fruits rouges',
+    5 => 'Fruits',
     6 => 'Lait Brebis',
     7 => 'Lait Vache',
     8 => 'Légumes',
