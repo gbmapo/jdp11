@@ -24,6 +24,9 @@ class ContractForm extends ContentEntityForm
     $entity = $this->entity;
 
     $form['type']['widget']['#sort_options']  = TRUE;
+    if (empty($form["type"]["widget"]["#default_value"])) {
+      $form["type"]["widget"]["#default_value"]=58;
+      }
 
     unset($form['actions']['delete']);
 
