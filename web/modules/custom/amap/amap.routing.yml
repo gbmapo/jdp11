@@ -110,3 +110,12 @@ amap.reserve_basket:
     _form: 'Drupal\amap\Form\BasketReservation'
   requirements:
     _permission: 'access content'
+
+amap.basket.purge:
+  path: '/amap/basket/{id}/purge'
+  defaults:
+    _form: 'Drupal\amap\Form\BasketPurgeForm'
+    _title: 'Basket Purge'
+  requirements:
+    _permission: 'access content'
+    id: \d+

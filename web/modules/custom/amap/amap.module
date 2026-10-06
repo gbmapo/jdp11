@@ -624,8 +624,13 @@ function amap_cron() {
   }
 
   // ----------------------------------------------------------------------------
-  // Pour désactiver le modal 'bourse_aux_paniers' si aucun panier n'est
-  // disponible à cause de dates de distribution dépassées
+  // Supprimer les paniers dont la date de distribution est dépassée
+  // ----------------------------------------------------------------------------
+  _purgeBourseauxpaniers();
+
+  // ----------------------------------------------------------------------------
+  // Activer ou désactiver le modal 'bourse_aux_paniers' et mettre à jour le texte
+  // selon le nombre de paniers actifs
   // ----------------------------------------------------------------------------
   _publishModalBourseauxpaniers();
 
@@ -912,12 +917,39 @@ function template_preprocess_basket(array &$variables) {
   }
 }
 
+function _purgeBourseauxpaniers() {
+
+  /*
+    ----------------------------------------------------------------------------
+    Supprimer les paniers dont la date de distribution est dépassée
+    ----------------------------------------------------------------------------
+   */
+  $database = \Drupal::database();
+
+  $today = DrupalDateTime::createFromTimestamp(strtotime("now"), new \DateTimeZone('Europe/Paris'))
+    ->format('Y-m-d');
+  $query = $database->select('basket', 'ba');
+  $query->leftJoin('distribution_date', 'dd', 'dd.id = ba.distributiondate');
+  $query->fields('ba', ['id']);
+  $query->fields('dd', ['distributiondate']);
+  $query->orderBy('distributiondate', 'ASC');
+  $query->condition('dd.distributiondate', $today, '<');
+  $ids = $query->execute()->fetchCol();
+
+  if ($ids) {
+    $deleted = $database->delete('basket')
+      ->condition('id', $ids, 'IN')
+      ->execute();
+  }
+
+}
+
 function _publishModalBourseauxpaniers() {
 
   /*
     ----------------------------------------------------------------------------
-    Mise à jour du texte et activation du modal 'bourse_aux_paniers'
-    selon le nombre de paniers proposés
+    Activer ou désactiver le modal 'bourse_aux_paniers' et mettre à jour le texte
+    selon le nombre de paniers actifs
     ----------------------------------------------------------------------------
    */
   $modal = \Drupal::entityTypeManager()
