@@ -6,6 +6,7 @@ dependencies:
     - user.role.administrator
   module:
     - amap
+    - association
     - options
     - user
 id: amap_baskets
@@ -416,6 +417,71 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        member_id:
+          id: member_id
+          table: person
+          field: member_id
+          relationship: seller
+          group_type: group
+          admin_label: ''
+          entity_type: person
+          entity_field: member_id
+          plugin_id: field
+          label: Vendeur
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         seller_1:
           id: seller_1
           table: basket
@@ -470,71 +536,6 @@ display:
           click_sort_column: target_id
           type: entity_reference_entity_id
           settings: {  }
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        seller:
-          id: seller
-          table: basket
-          field: seller
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: basket
-          entity_field: seller
-          plugin_id: field
-          label: Vendeur
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -621,7 +622,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if seller_1==\"[current-user:uid]\" %}\r\n<a href=\"/amap/basket/{{ id }}/edit\"><img src=\"/sites/default/files/images/edit.svg\" title=\"Modifier le panier\"></a> \r\n<a href=\"/amap/basket/{{ id }}/delete\"><img src=\"/sites/default/files/images/trash-2.svg\" title=\"Supprimer le panier\"></a> \r\n{% if buyer %}\r\n<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ buyer }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Panier réservé par...&quot;,&quot;width&quot;:&quot;50%&quot;}\"><img src=\"/sites/default/files/images/users.svg\" title=\"Voir qui a réservé le panier\"></a>\r\n{% endif %}\r\n{% endif %}"
+            text: "{% if seller_1==\"[current-user:uid]\" %}\r\n<a href=\"/amap/basket/{{ id }}/edit\"><img src=\"/sites/default/files/images/edit.svg\" title=\"Modifier le panier\"></a> \r\n<a href=\"/amap/basket/{{ id }}/delete\"><img src=\"/sites/default/files/images/trash-2.svg\" title=\"Supprimer le panier\"></a> \r\n{% if buyer %}\r\n<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ buyer }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Panier réservé par...&quot;,&quot;width&quot;:&quot;50%&quot;}\"><img src=\"/sites/default/files/images/user.svg\" title=\"Voir qui a réservé le panier\"></a>\r\n<a href=\"/amap/basket/{{ id }}/purge\"><img src=\"/sites/default/files/images/user-minus.svg\" title=\"Purger la réservation\"></a> \r\n{% endif %}\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
@@ -692,7 +693,52 @@ display:
           empty: true
           content: "Il n'y a actuellement aucun panier à afficher."
           tokenize: false
-      sorts: {  }
+      sorts:
+        distributiondate:
+          id: distributiondate
+          table: basket
+          field: distributiondate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: basket
+          entity_field: distributiondate
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+        product:
+          id: product
+          table: basket
+          field: product
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: basket
+          entity_field: product
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+        id:
+          id: id
+          table: basket
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: basket
+          entity_field: id
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters: {  }
       style:
@@ -783,7 +829,18 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        seller:
+          id: seller
+          table: basket
+          field: seller
+          relationship: none
+          group_type: group
+          admin_label: Personne
+          entity_type: basket
+          entity_field: seller
+          plugin_id: standard
+          required: false
       header:
         area:
           id: area
@@ -1224,6 +1281,71 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        member_id:
+          id: member_id
+          table: person
+          field: member_id
+          relationship: seller
+          group_type: group
+          admin_label: ''
+          entity_type: person
+          entity_field: member_id
+          plugin_id: field
+          label: Vendeur
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         seller_1:
           id: seller_1
           table: basket
@@ -1278,71 +1400,6 @@ display:
           click_sort_column: target_id
           type: entity_reference_entity_id
           settings: {  }
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        seller:
-          id: seller
-          table: basket
-          field: seller
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: basket
-          entity_field: seller
-          plugin_id: field
-          label: Vendeur
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -1429,7 +1486,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if buyer %}\r\n<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ buyer }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Panier réservé par...&quot;,&quot;width&quot;:&quot;50%&quot;}\"><img src=\"/sites/default/files/images/users.svg\" title=\"Voir qui a réservé le panier\"></a>\r\n{% endif %}"
+            text: "{% if buyer %}\r\n<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ buyer }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Panier réservé par...&quot;,&quot;width&quot;:&quot;50%&quot;}\"><img src=\"/sites/default/files/images/user.svg\" title=\"Voir qui a réservé le panier\"></a>\r\n<a href=\"/amap/basket/{{ id }}/purge\"><img src=\"/sites/default/files/images/user-minus.svg\" title=\"Purger la réservation\"></a> \r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false

@@ -5,7 +5,7 @@ dependencies: {  }
 id: bourse_aux_paniers
 label: 'Bourse aux paniers'
 body:
-  value: "Aucun panier n'est disponible dans la Bourse aux paniers."
+  value: 'Des paniers sont disponibles dans la Bourse aux paniers.  <a class="button-round" href="/amap/reserveBasket">J''y vais !</a>'
   format: full_html
 pages: "/node/1\r\n/node/25"
 auto_open: true
@@ -42,7 +42,7 @@ custom_cookie_expiration_time: 10000
 enable_show_on_height: false
 height_offset: ''
 height_offset_touch: '0'
-published: false
+published: true
 insert_horizontal_line_header: false
 insert_horizontal_line_footer: false
 enable_modal_header: true

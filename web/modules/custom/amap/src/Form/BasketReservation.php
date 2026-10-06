@@ -50,8 +50,14 @@ class BasketReservation extends FormBase {
           ],
         ],
         'comment' => $this->t('Comment'),
-        'seller' => $this->t('Seller'),
+        'seller' => $anonymous ? "" : $this->t('Seller'),
         'seller2' => [
+          'data' => [
+            '#prefix' => '<span hidden="">',
+            '#suffix' => '</span>',
+          ],
+        ],
+        'seller3' => [
           'data' => [
             '#prefix' => '<span hidden="">',
             '#suffix' => '</span>',
@@ -63,6 +69,7 @@ class BasketReservation extends FormBase {
       $query = \Drupal::database()->select('basket', 'ba');
       $query->leftJoin('distribution_date', 'dd', 'dd.id = ba.distributiondate');
       $query->leftJoin('person', 'pe', 'pe.id = ba.seller');
+      $query->leftJoin('member', 'me', 'me.id = pe.member_id');
       $query->fields('ba', [
         'id',
         'product',
@@ -71,18 +78,16 @@ class BasketReservation extends FormBase {
         'comment',
         'buyer',
       ]);
-      $query->fields('pe', ['email',]);
       $query->fields('dd', ['distributiondate']);
-      $query->fields('pe', ['lastname', 'firstname']);
+      $query->fields('pe', ['email', 'lastname', 'firstname', 'member_id']);
+      $query->fields('me', ['designation']);
       $query->orderBy('distributiondate', 'ASC')
         ->orderBy('product', 'ASC')
         ->orderBy('seller', 'ASC');
       $results = $query->execute();
-      $today = DrupalDateTime::createFromTimestamp(strtotime("now"), new \DateTimeZone('Europe/Paris'))
-        ->format('Y-m-d');
       $form_state->set('noBasketToReserve', TRUE);
       foreach ($results as $key => $result) {
-        if ($result->distributiondate < $today) {
+        if ($result->buyer != "" ) {
           $disabledRow = TRUE;
         }
         else {
@@ -104,10 +109,17 @@ class BasketReservation extends FormBase {
             ],
           ],
           'comment' => $result->comment == "" ? " " : $result->comment,
-          'seller' => $anonymous ? "" : $result->lastname . ' ' . $result->firstname,
+          'seller' => $anonymous ? "" : $result->designation,
           'seller2' => [
             'data' => [
               '#markup' => $result->email,
+              '#prefix' => '<span hidden="">',
+              '#suffix' => '</span>',
+            ],
+          ],
+          'seller3' => [
+            'data' => [
+              '#markup' => $result->member_id,
               '#prefix' => '<span hidden="">',
               '#suffix' => '</span>',
             ],
@@ -365,8 +377,7 @@ class BasketReservation extends FormBase {
    * $form_state->set('key', 'value'). The value ends up in
    * $form_state->getStorage()['value'].
    */
-  public
-  function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $anonymous = $this->currentUser()->isAnonymous();
     $aCleanValues = $form_state->cleanValues()->getValues();
@@ -426,9 +437,8 @@ class BasketReservation extends FormBase {
             $person->user_id = $user->id();
             $person->comment = NULL;
             $person->owner_id = 1;
-            $now = \Drupal::time()->getRequestTime();
-            $person->created = $now;
-            $person->changed = $now;
+            $person->created = $person->changed = \Drupal::time()
+              ->getRequestTime();
             $person->save();
             $id = $person->id();
           }
@@ -449,8 +459,7 @@ class BasketReservation extends FormBase {
 
   }
 
-  public
-  function getPersonData(FormStateInterface $form_state, $email) {
+  public function getPersonData(FormStateInterface $form_state, $email) {
 
     $form_state->set('email', $email);
     $query = \Drupal::database()->select('person', 'pe');
@@ -460,6 +469,7 @@ class BasketReservation extends FormBase {
       'lastname',
       'firstname',
       'cellphone',
+      'member_id',
     ])
       ->condition('pe.email', $email, '=');
     $result = $query->execute()->fetchAssoc();
@@ -467,34 +477,35 @@ class BasketReservation extends FormBase {
       $form_state->set('lastname', $result['lastname']);
       $form_state->set('firstname', $result['firstname']);
       $form_state->set('cellphone', $result['cellphone']);
+      $form_state->set('member_id', $result['member_id']);
       $form_state->set('registeredAnonymousId', $result['id']);
     }
     else {
       $form_state->set('lastname', '');
       $form_state->set('firstname', '');
       $form_state->set('cellphone', '');
+      $form_state->set('member_id', 0);
       $form_state->set('registeredAnonymousId', 0);
     }
 
   }
 
-  public
-  function saveData(FormStateInterface $form_state, $id) {
+  public function saveData(FormStateInterface $form_state, $id) {
 
+    $currentUserMemberId = $form_state->getStorage()['member_id'];
     $baskets = $form_state->getStorage()['baskets'];
     foreach ($baskets as $key => $value) {
       if ($value !== 0) {
         $basket = \Drupal::entityTypeManager()
           ->getStorage('basket')
           ->load($key);
-        $bask = $basket->id();
         $buyers = $basket->buyer->getString();
-        if ($basket->seller->getString() == $this->currentUser()->id()) {
+        if ( $value['seller3']['data']['#markup'] == $currentUserMemberId) {
           $sMessage = $this->t('Are you sure you want to reserve your own basket?');
           $sType = 'warning';
         }
         elseif (in_array($id, explode('+', $buyers))) {
-          $sMessage = $this->t('You have already reserved the basket #@tran.', ['@tran' => $bask]);
+          $sMessage = $this->t('You have already reserved the basket #@tran.', ['@tran' => $key]);
           $sType = 'warning';
         }
         else {
@@ -516,7 +527,7 @@ class BasketReservation extends FormBase {
           $buyers .= (($buyers != '') ? '+' : '') . $id;
           $basket->buyer = $buyers;
           $basket->save();
-          $sMessage = $this->t('Your reservation request for the basket #@tran has been recorded.<BR>An email has been sent to you and the seller.', ['@tran' => $bask]);
+          $sMessage = $this->t('Your reservation request for the basket #@tran has been recorded.<BR>An email has been sent to you and the seller.', ['@tran' => $key]);
           $sType = 'status';
         }
         \Drupal::messenger()->addMessage($sMessage, $sType);
