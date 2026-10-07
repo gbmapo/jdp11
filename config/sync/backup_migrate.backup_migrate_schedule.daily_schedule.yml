@@ -6,6 +6,8 @@ id: daily_schedule
 label: 'Daily  Schedule'
 enabled: true
 keep: 14
+encrypt: false
+encrypt_password: ''
 period: 43200
 cron: null
 source_id: default_db
