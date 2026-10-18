@@ -154,11 +154,11 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     case $form_id == 'views_form_association_sendemails_page_1':
     case $form_id == 'views_form_association_sendemails_page_2':
     case $form_id == 'views_form_association_sendemails_page_3':
-      $views_send_to_name = 'nothing_pos_2';
+      $views_send_to_name = 'firstname_pos_1';
       $views_send_to_mail = 'email_pos_3';
       break;
     case substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_':
-      $views_send_to_name = 'nothing_pos_2';
+      $views_send_to_name = 'firstname_pos_1';
       $views_send_to_mail = 'email_pos_4';
       $form_id = 'views_form_amap_contracts_subscriptions_page_1_';
       break;
