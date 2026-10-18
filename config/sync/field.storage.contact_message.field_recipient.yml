@@ -48,11 +48,11 @@ settings:
       value: '284'
       label: '2. AMAP Lentilles'
     -
+      value: '325'
+      label: '2. AMAP Lentilles'
+    -
       value: '319'
       label: '2. AMAP Miel'
-    -
-      value: '290'
-      label: '2. AMAP Pain'
     -
       value: '310'
       label: '2. AMAP Pommes de terre'
@@ -77,9 +77,6 @@ settings:
     -
       value: '303'
       label: '2. AMAP Volaille'
-    -
-      value: '283'
-      label: '2. AMAP Œufs'
     -
       value: '321'
       label: '2. AMAP Œufs'
