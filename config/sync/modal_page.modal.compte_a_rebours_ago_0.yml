@@ -5,7 +5,7 @@ dependencies: {  }
 id: compte_a_rebours_ago_0
 label: 'Compte à rebours AGO : 0'
 body:
-  value: '<p class="text-align-center">L''Assemblée Générale Ordinaire pour 2025,<br>c''est <span class="text-huge" style="color:hsl(0, 75%, 60%);"><strong>aujourd''hui</strong></span> à partir de 19 h 30.<br><br>Tous les détails <a href="/node/249">ici</a>.</p>'
+  value: '<p class="text-align-center">L''Assemblée Générale Ordinaire pour 2026,<br>c''est <span class="text-huge" style="color:hsl(0,75%,60%);"><strong>aujourd''hui</strong></span> à partir de 19 h 30.<br><br>Tous les détails <a href="/node/267">ici</a>.</p>'
   format: full_html
 pages: ''
 auto_open: true

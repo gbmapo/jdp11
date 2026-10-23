@@ -5,7 +5,7 @@ dependencies: {  }
 id: compte_a_rebours_ago
 label: 'Compte à rebours AGO'
 body:
-  value: '<!--20251017--><p class="text-align-center" style="font-size:400%;"><span>J-1</span></p><p class="text-align-center">L''Assemblée Générale Ordinaire pour 2025,<br>c''est le vendredi 17 octobre à partir de 19 h 30.<br><br>Tous les détails <a href="/node/249">ici</a>.</p>'
+  value: '<!--20261106--><p class="text-align-center" style="font-size:400%;"><span>J-1</span></p><p class="text-align-center">L''Assemblée Générale Ordinaire pour 2026,<br>c''est le vendredi 6 novembre à partir de 19 h 30.<br><br>Tous les détails <a href="/node/267">ici</a>.</p>'
   format: full_html
 pages: "/node/1\r\n/node/25"
 auto_open: true
