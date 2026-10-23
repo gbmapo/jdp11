@@ -867,7 +867,7 @@ final class Membership extends FormBase {
         ],
         '#title' => $this->t('- Si je souscris à au moins un panier (quel que soit le contrat),'),
         '#options' => [
-          'dist' => 'je m’engage à participer aux distributions au moins deux fois par an',
+          'dist' => 'je m’engage à participer aux distributions au moins trois fois par an',
           'work' => 'je m’engage à assister aux ateliers pédagogiques sur les lieux de production en fonction des besoins',
         ],
         '#states' => [

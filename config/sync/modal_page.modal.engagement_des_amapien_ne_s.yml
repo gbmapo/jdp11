@@ -5,7 +5,7 @@ dependencies: {  }
 id: engagement_des_amapien_ne_s
 label: 'Engagement des AMAPien•ne•s'
 body:
-  value: "<div class=\"text-align-justify\"><p>Nous vous rappelons que les AMAPiens (adhérents ayant souscrit au moins un contrat, quel qu'il soit) s'engagent à participer aux distributions au moins deux fois dans l'année.</p><p>Pour ceux qui ont du mal à être présents de 18 h à 20 h (préparation, distribution et rangement inclus), n'hésitez pas à vous inscrire en prévenant le référent de distribution que vous ne serez présent qu'au début ou à la fin.&nbsp;<br>Participer un peu vaut mieux que pas du tout 😇</p></div>"
+  value: "<div class=\"text-align-justify\"><p>Nous vous rappelons que les AMAPiens (adhérents ayant souscrit au moins un contrat, quel qu'il soit) s'engagent à participer aux distributions au moins trois fois dans l'année.</p><p>Pour ceux qui ont du mal à être présents de 18 h à 20 h (préparation, distribution et rangement inclus), n'hésitez pas à vous inscrire en prévenant le référent de distribution que vous ne serez présent qu'au début ou à la fin.&nbsp;<br>Participer un peu vaut mieux que pas du tout 😇</p></div>"
   format: full_html
 pages: "/amap/distributions\r\n/amap/signupForPlanningMany"
 auto_open: true
@@ -35,7 +35,6 @@ roles:
   extended_ca: '0'
   secretary: '0'
   administrator: '0'
-  member: '0'
 type: page
 delay_display: '0'
 enable_custom_cookie_expiration: false
