@@ -138,10 +138,10 @@ function association_cron() {
     ->load('compte_a_rebours_ago');
 
   if ($modal->getPublished()) {
-    $today = DrupalDateTime::createFromTimestamp(strtotime("now"), new \DateTimeZone('Europe/Paris'))
-      ->format('Ymd');
+    $today = mktime(0, 0, 0);
     $body = $modal->getBody()['value'];
-    $delay = substr($body, 4, 8) - $today;
+    $AGday = mktime(0, 0, 0, substr($body, 8, 2), substr($body, 10, 2), substr($body, 4, 4));
+    $delay = (int) ($AGday - $today)/86400;
     $start= strpos($body, '<span>')+6;
     $end = strpos($body, '</span>');
     $body = substr_replace($body, 'J-' . $delay, $start, $end - $start);

@@ -5,7 +5,7 @@ dependencies: {  }
 id: compte_a_rebours_ago
 label: 'Compte à rebours AGO'
 body:
-  value: '<!--20261106--><p class="text-align-center" style="font-size:400%;"><span>J-1</span></p><p class="text-align-center">L''Assemblée Générale Ordinaire pour 2026,<br>c''est le vendredi 6 novembre à partir de 19 h 30.<br><br>Tous les détails <a href="/node/267">ici</a>.</p>'
+  value: '<!--20261106--><p class="text-align-center" style="font-size:400%;"><span>J-11</span></p><p class="text-align-center">L''Assemblée Générale Ordinaire pour 2026,<br>c''est le vendredi 6 novembre à partir de 19 h 30.<br><br>Tous les détails <a href="/node/267">ici</a>.</p>'
   format: full_html
 pages: "/node/1\r\n/node/25"
 auto_open: true
@@ -42,7 +42,7 @@ custom_cookie_expiration_time: 10000
 enable_show_on_height: false
 height_offset: ''
 height_offset_touch: '0'
-published: false
+published: true
 insert_horizontal_line_header: false
 insert_horizontal_line_footer: false
 enable_modal_header: true
