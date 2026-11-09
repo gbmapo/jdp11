@@ -51,11 +51,8 @@ settings:
       value: '319'
       label: '2. AMAP Miel'
     -
-      value: '310'
+      value: '326'
       label: '2. AMAP Pommes de terre'
-    -
-      value: '322'
-      label: '2. AMAP Pommes-Poires'
     -
       value: '316'
       label: '2. AMAP Porc'
